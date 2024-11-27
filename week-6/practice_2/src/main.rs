@@ -1,13 +1,18 @@
 fn main() {
-    let name1 ="Ayomide Adesokan";
-    println!("My name is {}", name1);
+    println!("Welcome! Thi program checks whether a character variable contains a digit or not");
+    checker()
+}
+fn checker() {
+    let mut input = String::new();
+    println!("Enter a character:");
+    io::stdin()
+        .read_line(&mut input)
+        .expect("Failed to read input");
+    let ch: char = input.trim().parse().expect("Invalid input");
 
-    //find and replace
-    let name2 = name1.replace("Ayomide", "Adebare");
-    println!("You can also call me {}", name2);
-    let faculty = "Faculty of Science and Technology";
-
-    //find and replace
-    let school = faculty.replace("Faculty", "School");
-    println!("I am a student of the {}", school);
+    if ch >= '0' && ch <= '9' {
+        println!("Character '{}' is a digit", ch);
+    } else {
+        println!("Character '{}' is not a digit", ch);
+    }
 }
