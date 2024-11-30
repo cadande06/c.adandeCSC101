@@ -1,3 +1,4 @@
+use std::io;
 fn main() {
     println!("Welcome! Thi program checks whether a character variable contains a digit or not");
     checker()
