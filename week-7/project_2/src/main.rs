@@ -29,12 +29,12 @@ fn main() {
 
     // checking for highest experience
     for i in 0..years_vec.len(){
-        if years_vec[i]>0{
+        if years_vec[i]>highest{
             highest = years_vec[i];
             nameh = name_vec[i].clone();
         }
     }
 
-    println!("\nFrom my review of all job apllicants, the applicant with the highest programming experience is {:?} and has an experience of {:?}years.", nameh, highest);
+    println!("\nFrom my review of all job apllicants, the applicant with the highest programming experience is {:?} and has an experience of {:?} years.", nameh, highest);
     println!("\nThank you all for your time.");
 }
