@@ -1,55 +1,45 @@
-use std::fs::{self, File};
-use std::io::{self, Read, Write};
-fn main() {
-    // creating the three separate data files
-    // file 1
-    let mut headn=["S/N", "NAME OF COMMISIONER"];
-    let mut name_list= [
-    ["1","Aigbogun Alamba Daudu"], 
-    ["2","Murtala Afeez Bendu"],
-    ["3", "Okorocha Calistus Ogbona"],
-    ["4", "Adewale Jimoh Akanbi"],
-    ["5", "Osazuwa Faith Etieye"]
+use std::fs::File;
+use std::io::Write;
+
+fn main(){
+    // Arrays for the datasets
+    let head = ["CONVICTED MINISTERS"];
+    let headers = ["S/N", "NAME OF COMMISSIONER", "MINISTRY", "GEOPOLITICAL ZONE"];
+    let commissioners = [
+        "Aigbogun Alamba Daudu",
+        "Murtala Afeez Bendu",
+        "Okorocha Calistus Ogbonna",
+        "Adewale Jimoh Akanbi",
+        "Osazuwa Faith Etiye",
     ];
-    let mut names = File::create("/Users/chiomadande/Documents/c.adandeCSC101/week-8/project_3/target/names.txt").expect("failed to create file");
-    writeln!(names,"{:<5}{:<30}", headn[0], headn[1]).unwrap();
-    writeln!(names,"{:-<35}\n", "").unwrap();
-    for n in name_list{
-    writeln!(names,"{:<5}{:<30}", n[0], n[1]).unwrap();
-    
+
+    let ministries = [
+        "Internal Affairs",
+        "Justice",
+        "Defense",
+        "Power & Steel",
+        "Petroleum",
+    ];
+
+    let geopolitical_zones = [
+        "South West",
+        "North East",
+        "South South",
+        "South West",
+        "South East",
+    ];
+    let sn = [1,2,3,4,5];
+  
+
+    // Writing the data to a text file
+    let mut file = File::create("/Users/chiomadande/Documents/c.adandeCSC101/week-8/project_3/target/efcc.txt").expect("Could not create file");
+    writeln!(file,"\n{:^75}\n", head[0]).expect("failed to add input");
+    writeln!(file,"{:<5}{:<30}{:<20}{:<20}", headers[0], headers[1], headers[2], headers[3]).expect("failed to add input");
+    writeln!(file,"{:-<75}\n\n", "").expect("failed to add input");
+    for i in 0..ministries.len(){
+        writeln!(file,"{:<5}{:<30}{:<20}{:<20}\n",sn[i], commissioners[i], ministries[i], geopolitical_zones[i]).expect("failed to add input");
     }
 
-    // file 2
-    let mut headm=["S/N", "MINISTRY"];
-    let mut min_list= [
-    ["1","Internal Affairs"], 
-    ["2","Justice"],
-    ["3", "Defense"],
-    ["4", "Power & Steel"],
-    ["5", "Petroleum"]
-    ];
-    let mut ministries = File::create("/Users/chiomadande/Documents/c.adandeCSC101/week-8/project_3/target/ministries.txt").expect("failed to create file");
-    writeln!(ministries,"{:<5}{:<20}", headm[0], headm[1]).unwrap();
-    writeln!(ministries,"{:-<25}\n", "").unwrap();
-    for m in min_list{
-    writeln!(ministries,"{:<5}{:<20}", m[0], m[1]).unwrap();
+    println!("\nFINISHED! The efcc file can be found in the target folder of this project. Thank you!");
     
-    }
-
-    // file 3
-    let mut headg=["S/N", "GEOPOLITICAL ZONE"];
-    let mut geo_list= [
-    ["1","South West"], 
-    ["2","North East"],
-    ["3", "South South"],
-    ["4", "South West"],
-    ["5", "South East"]
-    ];
-    let mut geos = File::create("/Users/chiomadande/Documents/c.adandeCSC101/week-8/project_3/target/geos.txt").expect("failed to create file");
-    writeln!(geos,"{:<5}{:<25}", headg[0], headg[1]).unwrap();
-    writeln!(geos,"{:-<30}\n", "").unwrap();
-    for g in geo_list{
-    writeln!(geos,"{:<5}{:<25}", g[0], g[1]).unwrap();
-    
-    }
 }
